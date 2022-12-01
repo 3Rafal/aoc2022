@@ -7,11 +7,10 @@
       (buffer-substring-no-properties (point-min) (point-max))) "\n\n")))
 
 (defun sum-calories (cal-list)
-  (apply '+ (mapcar (lambda (x) (string-to-number x)) cal-list)))
+  (apply '+ (mapcar 'string-to-number cal-list)))
 
-(defvar sorted (sort
-                (mapcar 'sum-calories split-by-calories)
-                '>))
+(defvar sorted
+  (sort (mapcar 'sum-calories split-by-calories) '>))
 
 (defvar part-1 (car sorted))
 (defvar part-2 (apply '+ (seq-take sorted 3)))
